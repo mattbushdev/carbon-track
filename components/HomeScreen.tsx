@@ -1,47 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Pressable, Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Estimate from "./Estimate";
 import UserActivity from "./UserActivity";
-import { getUser, getGroup } from "../dbfunctions/dynamo.js";
 
 export type Props = {
   navigation?: string;
+  currUser?: any;
+  currGroup?: any;
 };
 
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
-  const [currUser, setCurrUser] = useState(null);
-  const [hasErrored, setHasErrored] = useState(false);
-  const [currGroup, setCurrGroup] = useState(null);
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   getUser()
-  //     .then((res) => {
-  //       setCurrUser(res);
-  //       setHasLoaded(true);
-  //     })
-  //     .catch((err) => {
-  //       setHasErrored(true);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   if (hasLoaded) {
-  //     console.log("hello");
-  //     console.log(currUser.Groups[0].length, "<--current group");
-
-  //     getGroup(currUser.Groups[currUser.Groups.length - 1])
-  //       .then((res) => {
-  //         console.log('************** getGroup **************')
-  //         setCurrGroup(res);
-  //       })
-  //       .catch((err) => {
-  //         setHasErrored(true);
-  //       });
-  //   }
-  // }, [hasLoaded]);
-
+const HomeScreen: React.FC<Props> = ({ navigation, currUser, currGroup }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>

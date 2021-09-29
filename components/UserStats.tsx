@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { getUser } from "../dbfunctions/dynamo.js";
 
 export type Props = {
   currUser?: any;
 };
 
-const UserStats: React.FC<Props> = ({ navigation, currUser }) => {
-  const [hasErrored, setHasErrored] = useState(false);
-
+const UserStats: React.FC<Props> = ({ currUser }) => {
   return (
     <View style={styles.container}>
       <View style={styles.userStats}>
@@ -56,7 +53,6 @@ const styles = StyleSheet.create({
   },
   userStatsText: {
     fontSize: 18,
-    // textTransform: "capitalize",
     marginBottom: 10,
   },
   userVehicleText: {

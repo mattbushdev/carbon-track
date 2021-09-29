@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Pressable,
   SafeAreaView,
   Text,
   View,
   StyleSheet,
-  Image
+  Image,
 } from "react-native";
 import { addUser, getUser } from "../dbfunctions/dynamo";
 
 export type Props = {
-  navigation?: any,
+  navigation?: any;
 };
 
 const WelcomeBack: React.FC<Props> = ({ navigation }) => {
-
-
-
   const handlePress = () => {
     getUser().then((user) => {
-      console.log('inside of getUser -- welcomeBack')
       if (!user) {
-        console.log('inside of if statement -- welcomeBack')
         addUser();
       }
     });
 
-    navigation.navigate('UserDetails');
+    navigation.navigate("UserDetails");
   };
 
   return (
@@ -36,19 +31,14 @@ const WelcomeBack: React.FC<Props> = ({ navigation }) => {
           style={styles.image}
           source={require("../src/icons/D7E7E1/bike.png")}
         />
-        <Text
-          style={styles.welcome}>
-          Welcome back
-        </Text>
-        <Pressable
-          style={styles.button}
-          onPress={handlePress}>
+        <Text style={styles.welcome}>Welcome back</Text>
+        <Pressable style={styles.button} onPress={handlePress}>
           <Text style={styles.enter}>Enter</Text>
         </Pressable>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 10,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   enter: {
     alignItems: "center",

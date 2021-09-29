@@ -6,7 +6,6 @@ import UserStats from "./UserStats";
 import { getUser, getGroup } from "../dbfunctions/dynamo.js";
 
 export type Props = {
-  currGroup?: any;
   navigation?: any;
 };
 
@@ -29,12 +28,8 @@ const User: React.FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     if (hasLoaded) {
-      console.log("hello");
-      console.log(currUser.Groups[0].length, "<--current group");
-
-      getGroup(currUser.Groups[currUser.Groups.length -1])
+      getGroup(currUser.Groups[currUser.Groups.length - 1])
         .then((res) => {
-          console.log('************** getGroup **************')
           setCurrGroup(res);
         })
         .catch((err) => {
@@ -67,17 +62,11 @@ const User: React.FC<Props> = ({ navigation }) => {
       </View>
       {currUser && (
         <View style={styles.statsContainer}>
-          <UserStats navigation={navigation} currUser={currUser} />
+          <UserStats currUser={currUser} />
         </View>
       )}
       <View style={styles.statsContainer}>
-        {currGroup && (
-          <GroupStats
-            navigation={navigation}
-            currUser={currUser}
-            currGroup={currGroup}
-          />
-        )}
+        {currGroup && <GroupStats currGroup={currGroup} />}
       </View>
     </SafeAreaView>
   );

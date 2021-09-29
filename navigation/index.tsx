@@ -4,7 +4,7 @@ import {
   DarkTheme,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React from "react";
 import { ColorSchemeName } from "react-native";
 
 import UserDetails from "../components/UserDetails";
@@ -16,17 +16,10 @@ import WelcomeBack from "../components/WelcomeBack";
 import Offset from "../components/Offset";
 
 const Stack = createNativeStackNavigator();
-export type Props = {
-  setCurrUser?: any;
-  currUser?: any;
-};
 
 export default function Navigation({
-  // props,
   colorScheme,
-}: // currUser,
-// setCurrUser
-{
+}: {
   colorScheme: ColorSchemeName;
 }) {
   return (

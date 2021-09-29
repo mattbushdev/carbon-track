@@ -71,9 +71,6 @@ const UserDetails: React.FC<Props> = ({ navigation }) => {
             </Pressable>
           </>
         )}
-        {/* {hasErrored && (
-          <Text style={styles.inputError}>Error, invalid input</Text>
-        )} */}
 
         {userVehicle && (
           <View style={styles.confirmContainer}>

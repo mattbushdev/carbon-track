@@ -35,13 +35,7 @@ const Journey: React.FC<Props> = ({ navigation }) => {
   const [steps, setSteps] = useState([]);
   const [userVehicle, setUserVehicle] = useState(null);
   const [travel, setTravel] = useState("driving");
-
-  const [calc, setCalc] = useState(false);
   const [track, setTrack] = useState(false);
-
-  console.log(coords, "JOURNEY");
-  console.log(userVehicle, '<--- vehicle')
-  console.log(track, '<--- tracking')
 
   const handleSubmit = () => {
     getDistance(fromInput, toInput)
@@ -67,7 +61,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
       .catch((err) => {
         setHasErrored(true);
       });
-    setCalc(true);
     setTrack(false);
     getCar()
       .then((res) => {
@@ -77,7 +70,7 @@ const Journey: React.FC<Props> = ({ navigation }) => {
         setHasErrored(true);
       });
   };
-  
+
   const handleTrack = () => {
     addJourney({
       from: fromInput,
@@ -93,7 +86,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
         distance * options.driving - distance * options[travel]
       ),
     });
-    setCalc(false);
     setTrack(true);
   };
 
@@ -102,7 +94,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
     setFromInput("");
     setUserVehicle(null);
     setTrack(false);
-    setCalc(false);
   };
 
   const handleTransit = () => {
@@ -165,7 +156,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
     options.bicycling = 0;
     options.walking = 0;
   }
-  console.log(travel, "<---- TRAVEL");
 
   return (
     <SafeAreaView style={styles.container}>
