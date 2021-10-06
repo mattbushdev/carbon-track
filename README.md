@@ -43,6 +43,10 @@ or
 
 5. Select choice of emulator through Expo
 
+6. On the sign up page create an account with AWS Cognito and enter the code sent to your email to verify. Once verified you can then sign in.
+
+7. Go ahead and start using the app!
+
 ## Built with
 
 The technologies used for this project are listed below:
