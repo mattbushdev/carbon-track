@@ -12,12 +12,20 @@ import { getData } from "../dbfunctions/api-functions.js";
 import { addCar } from "../dbfunctions/dynamo.js";
 
 export type Props = {
-  navigation?: string;
+  navigation?: any;
 };
+
+interface vehicle {
+  emissions: number;
+  make: string;
+  colour: string;
+  year: number;
+  fuelType: string;
+}
 
 const UserDetails: React.FC<Props> = ({ navigation }) => {
   const [inputReg, setInputReg] = useState("");
-  const [userVehicle, setUserVehicle] = useState(null);
+  const [userVehicle, setUserVehicle] = useState<vehicle | null>(null);
   const [hasErrored, setHasErrored] = useState(false);
 
   const handleSubmit = (event) => {
@@ -89,7 +97,7 @@ const UserDetails: React.FC<Props> = ({ navigation }) => {
             </View>
             <Pressable
               style={styles.buttonForm}
-              onPress={() => navigation.navigate("GroupDetails")}
+              onPress={() => navigation?.navigate("GroupDetails")}
             >
               <Text style={styles.buttonFormText}>Add</Text>
             </Pressable>

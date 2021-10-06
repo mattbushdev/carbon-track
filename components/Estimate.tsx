@@ -1,5 +1,9 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text } from "react-native";
+
+export type Props = {
+  navigation?: any;
+};
 
 const Estimate: React.FC<Props> = ({ navigation }) => {
   return (

@@ -5,9 +5,23 @@ import Estimate from "./Estimate";
 import UserActivity from "./UserActivity";
 
 export type Props = {
-  navigation?: string;
-  currUser?: any;
-  currGroup?: any;
+  navigation?: any;
+  currUser?: {
+    Journey: any;
+    TotalEmissions: number;
+    EmissionsSaved: number;
+    UserName: string;
+    Vehicles: any;
+    Groups: any;
+  };
+  currGroup?: {
+    Item: {
+      GroupCode: string;
+      GroupCreator: string;
+      GroupMembers: any;
+      GroupName: string;
+    };
+  };
 };
 
 const HomeScreen: React.FC<Props> = ({ navigation, currUser, currGroup }) => {

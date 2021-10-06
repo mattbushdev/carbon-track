@@ -23,7 +23,7 @@ import MapView, {
 } from "react-native-maps";
 
 export type Props = {
-  navigation?: string;
+  navigation?: any;
 };
 
 const Journey: React.FC<Props> = ({ navigation }) => {
@@ -236,7 +236,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.buttonOptionText}>Bus</Text>
         </Pressable>
         <Pressable
-          style={styles.buttonOption}
           onPress={handleBicycle}
           style={({ pressed }) => [
             {
@@ -251,7 +250,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.buttonOptionText}>Bicycle</Text>
         </Pressable>
         <Pressable
-          style={styles.buttonOption}
           onPress={handleWalk}
           style={({ pressed }) => [
             {
@@ -266,7 +264,6 @@ const Journey: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.buttonOptionText}>Walk</Text>
         </Pressable>
         <Pressable
-          style={styles.buttonOption}
           onPress={handleCar}
           style={({ pressed }) => [
             {

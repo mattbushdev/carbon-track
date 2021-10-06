@@ -9,8 +9,17 @@ export type Props = {
   navigation?: any;
 };
 
+interface user {
+  Journey: any;
+  TotalEmissions: number;
+  EmissionsSaved: number;
+  UserName: string;
+  Vehicles: any;
+  Groups: any;
+}
+
 const User: React.FC<Props> = ({ navigation }) => {
-  const [currUser, setCurrUser] = useState(null);
+  const [currUser, setCurrUser] = useState<user | null>(null);
   const [hasErrored, setHasErrored] = useState(false);
   const [currGroup, setCurrGroup] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -28,7 +37,7 @@ const User: React.FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     if (hasLoaded) {
-      getGroup(currUser.Groups[currUser.Groups.length - 1])
+      getGroup(currUser?.Groups[currUser.Groups.length - 1])
         .then((res) => {
           setCurrGroup(res);
         })

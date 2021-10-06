@@ -3,29 +3,41 @@ import { StyleSheet, Text, View } from "react-native";
 import Auth from "@aws-amplify/auth";
 
 export type Props = {
-  currGroup?: any;
+  currGroup?: {
+    Item: {
+      GroupCode: string;
+      GroupCreator: string;
+      GroupMembers: any;
+      GroupName: string;
+    };
+  };
 };
-
 const GroupStats: React.FC<Props> = ({ currGroup }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.groupStats}>
-        <Text style={styles.groupStatsTitle}>
-          {currGroup.Item.GroupName} - Group Stats:
-        </Text>
-        {currGroup.Item.GroupMembers.map((member) => {
-          if (Auth.user.username !== member.UserName) {
+      <Text style={styles.groupStatsTitle}>
+        {currGroup?.Item.GroupName} - Group Stats:
+      </Text>
+      {currGroup?.Item.GroupMembers.map(
+        (member?: {
+          EmissionsSaved: number;
+          TotalEmissions: number;
+          UserName: string;
+        }) => {
+          if (Auth.user.username !== member?.UserName) {
             return (
-              <Text style={styles.groupStatsText} key={member.UserName}>
-                <Text style={styles.groupStatsText}>{member.UserName} </Text>
+              <Text style={styles.groupStatsText} key={member?.UserName}>
+                <Text style={styles.groupStatsTextBold}>
+                  {member?.UserName} -{" "}
+                </Text>
                 <Text style={styles.groupStatsText}>
-                  Total Emissions: {member.TotalEmissions}
+                  Total Emissions: {member?.TotalEmissions}
                 </Text>
               </Text>
             );
           }
-        })}
-      </View>
+        }
+      )}
     </View>
   );
 };
@@ -47,6 +59,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: "capitalize",
     marginBottom: 10,
+  },
+  groupStatsTextBold: {
+    fontWeight: "bold",
+    color: "#2F4847",
   },
 });
 
