@@ -2,7 +2,14 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export type Props = {
-  currUser?: any;
+  currUser?: {
+    Journey: any;
+    TotalEmissions: number;
+    EmissionsSaved: number;
+    UserName: string;
+    Vehicles: any;
+    Groups: any;
+  };
 };
 
 const UserStats: React.FC<Props> = ({ currUser }) => {
@@ -11,20 +18,20 @@ const UserStats: React.FC<Props> = ({ currUser }) => {
       <View style={styles.userStats}>
         <Text style={styles.userStatsTitle}>Your Stats</Text>
         <Text style={styles.userStatsText}>
-          Your Total Emissions: {Math.ceil(currUser.TotalEmissions)} grams
+          Your Total Emissions: {Math.ceil(currUser?.TotalEmissions)} grams
         </Text>
         <Text style={styles.userStatsText}>
-          Saved Emissions: {Math.ceil(currUser.EmissionsSaved)} grams
+          Saved Emissions: {Math.ceil(currUser?.EmissionsSaved)} grams
         </Text>
         <Text style={styles.userStatsText}>
-          Total Journeys: {currUser.Journey.length}
+          Total Journeys: {currUser?.Journey.length}
         </Text>
       </View>
       <View style={styles.vehicleContainer}>
         <Text style={styles.userStatsTitle}>Your Vehicles</Text>
 
         <Text style={styles.userVehicleText}>
-          Vehicle 1: {currUser.Vehicles[0].make}
+          Vehicle 1: {currUser?.Vehicles[0].make}
         </Text>
       </View>
     </View>
