@@ -2,26 +2,47 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export type Props = {
-  currUser?: {
-    Journey: any;
+  currUser: {
+    Journey: journey[];
     TotalEmissions: number;
     EmissionsSaved: number;
     UserName: string;
-    Vehicles: any;
-    Groups: any;
+    Vehicles: vehicle[];
+    Groups: group[];
   };
 };
 
+interface journey {
+  emissions: number;
+  emissionsSaved: number;
+  from: string;
+  to: string;
+}
+
+interface group {
+  GroupName: string;
+}
+
+interface vehicle {
+  emissions: number;
+  make: string;
+  colour: string;
+  year: number;
+  fuelType: string;
+}
+
 const UserStats: React.FC<Props> = ({ currUser }) => {
+  console.log(currUser);
+
   return (
     <View style={styles.container}>
       <View style={styles.userStats}>
         <Text style={styles.userStatsTitle}>Your Stats</Text>
         <Text style={styles.userStatsText}>
-          Your Total Emissions: {Math.ceil(currUser?.TotalEmissions)} grams
+          Your Total Emissions: {Math.ceil(currUser.TotalEmissions)} grams
         </Text>
         <Text style={styles.userStatsText}>
-          Saved Emissions: {Math.ceil(currUser?.EmissionsSaved)} grams
+          Saved Emissions: {Math.ceil(currUser.EmissionsSaved)} grams
         </Text>
         <Text style={styles.userStatsText}>
           Total Journeys: {currUser?.Journey.length}
@@ -31,7 +52,7 @@ const UserStats: React.FC<Props> = ({ currUser }) => {
         <Text style={styles.userStatsTitle}>Your Vehicles</Text>
 
         <Text style={styles.userVehicleText}>
-          Vehicle 1: {currUser?.Vehicles[0].make}
+          Vehicle 1: {currUser.Vehicles[0].make}
         </Text>
       </View>
     </View>

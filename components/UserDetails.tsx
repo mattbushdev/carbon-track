@@ -28,8 +28,7 @@ const UserDetails: React.FC<Props> = ({ navigation }) => {
   const [userVehicle, setUserVehicle] = useState<vehicle | null>(null);
   const [hasErrored, setHasErrored] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     getData(inputReg)
       .then((vehicle) => {
         setUserVehicle(vehicle);
@@ -82,7 +81,7 @@ const UserDetails: React.FC<Props> = ({ navigation }) => {
 
         {userVehicle && (
           <View style={styles.confirmContainer}>
-            <View style={styles.confirmContainerText}>
+            <View>
               <Text style={styles.confirmText}>Make: {userVehicle.make}</Text>
               <Text style={styles.confirmText}>
                 Colour: {userVehicle.colour}
@@ -184,9 +183,6 @@ const styles = StyleSheet.create({
   confirmContainer: {
     alignItems: "center",
     justifyContent: "center",
-  },
-  confirmContainerText: {
-    textAlign: "left",
   },
   confirmTitle: {
     fontSize: 20,
