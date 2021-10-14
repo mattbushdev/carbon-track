@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Auth from "@aws-amplify/auth";
 
@@ -7,37 +7,45 @@ export type Props = {
     Item: {
       GroupCode: string;
       GroupCreator: string;
-      GroupMembers: any;
+      GroupMembers: user[];
       GroupName: string;
     };
   };
 };
+
+interface user {
+  TotalEmissions: number;
+  EmissionsSaved: number;
+  UserName: string;
+}
+
 const GroupStats: React.FC<Props> = ({ currGroup }) => {
+  const [authUser, setAuthUser] = useState<string | null>(null);
+
+  const getAuthUser = async () => await Auth.currentUserInfo();
+  getAuthUser().then((res) => {
+    setAuthUser(res.username);
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.groupStatsTitle}>
         {currGroup?.Item.GroupName} - Group Stats:
       </Text>
-      {currGroup?.Item.GroupMembers.map(
-        (member?: {
-          EmissionsSaved: number;
-          TotalEmissions: number;
-          UserName: string;
-        }) => {
-          if (Auth.user.username !== member?.UserName) {
-            return (
-              <Text style={styles.groupStatsText} key={member?.UserName}>
-                <Text style={styles.groupStatsTextBold}>
-                  {member?.UserName} -{" "}
-                </Text>
-                <Text style={styles.groupStatsText}>
-                  Total Emissions: {member?.TotalEmissions}
-                </Text>
+      {currGroup?.Item.GroupMembers.map((member) => {
+        if (authUser !== member?.UserName) {
+          return (
+            <Text style={styles.groupStatsText} key={member?.UserName}>
+              <Text style={styles.groupStatsTextBold}>
+                {member?.UserName} -{" "}
               </Text>
-            );
-          }
+              <Text style={styles.groupStatsText}>
+                Total Emissions: {member?.TotalEmissions}
+              </Text>
+            </Text>
+          );
         }
-      )}
+      })}
     </View>
   );
 };
