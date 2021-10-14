@@ -32,8 +32,6 @@ interface vehicle {
 }
 
 const UserStats: React.FC<Props> = ({ currUser }) => {
-  console.log(currUser);
-
   return (
     <View style={styles.container}>
       <View style={styles.userStats}>
